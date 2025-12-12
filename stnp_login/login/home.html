@@ -8,10 +8,13 @@
 </head>
 <body>
 
+<!-- PARTICLES BACKGROUND -->
+<canvas id="particles"></canvas>
+
 <!-- NAVBAR -->
 <div class="navbar">
     <h1>STNP</h1>
-    <input type="text" placeholder="Search Reddit...">
+    <input type="text" placeholder="Search...">
     <div class="settings-btn" id="settingsBtn">⚙️</div>
 </div>
 
@@ -27,7 +30,6 @@
     <button id="profileBtn" class="profile-btn">View Profile</button>
     <button id="logoutBtn" class="logout-btn">Logout</button>
 </div>
-
 
 <!-- PAGE LAYOUT -->
 <div class="layout">
@@ -57,7 +59,7 @@
             <button id="postBtn">Post</button>
         </div>
 
-        <!-- FEED CONTAINER -->
+        <!-- FEED -->
         <div id="postFeed"></div>
 
     </div>
@@ -70,213 +72,9 @@
 
 </div>
 
-<script>
-
-/*-----------------------------------------
-   DARK MODE LOAD
-------------------------------------------*/
-if (localStorage.getItem("theme") === "dark") {
-    document.body.classList.add("dark");
-}
-
-const modeSwitch = document.getElementById("modeSwitch");
-modeSwitch.checked = localStorage.getItem("theme") === "dark";
-
-modeSwitch.onchange = () => {
-    if (modeSwitch.checked) {
-        document.body.classList.add("dark");
-        localStorage.setItem("theme", "dark");
-    } else {
-        document.body.classList.remove("dark");
-        localStorage.setItem("theme", "light");
-    }
-};
-
-
-/*-----------------------------------------
-   SETTINGS & NAVIGATION
-------------------------------------------*/
-document.getElementById("settingsBtn").onclick = () => {
-    const panel = document.getElementById("settingsPanel");
-    panel.style.display = panel.style.display === "block" ? "none" : "block";
-};
-
-document.getElementById("profileBtn").onclick = () => {
-    window.location.href = "profile.html";
-};
-
-document.getElementById("logoutBtn").onclick = () => {
-    alert("You are now logged out.");
-    window.location.href = "login.php";
-};
-
-
-/*-----------------------------------------
-   POST SYSTEM WITH LOCAL STORAGE
-------------------------------------------*/
-let savedPosts = JSON.parse(localStorage.getItem("posts")) || [];
-
-// Load posts
-window.onload = () => {
-    savedPosts.forEach(post => renderPost(post, false));
-};
-
-const postTitle = document.getElementById("postTitle");
-const postText = document.getElementById("postText");
-const postImage = document.getElementById("postImage");
-const postBtn = document.getElementById("postBtn");
-const postFeed = document.getElementById("postFeed");
-
-postBtn.onclick = async () => {
-    if (postTitle.value.trim() === "") {
-        alert("Title is required!");
-        return;
-    }
-
-    let imageBase64 = "";
-    if (postImage.files.length > 0) {
-        imageBase64 = await toBase64(postImage.files[0]);
-    }
-
-    const newPost = {
-        id: Date.now(),
-        title: postTitle.value,
-        text: postText.value,
-        image: imageBase64,
-        votes: 0,
-        created: Date.now()   // <-- REAL TIMESTAMP
-    };
-
-    savedPosts.unshift(newPost);
-    localStorage.setItem("posts", JSON.stringify(savedPosts));
-
-    renderPost(newPost, true);
-
-    postTitle.value = "";
-    postText.value = "";
-    postImage.value = "";
-};
-
-
-/*-----------------------------------------
-   BASE64 HELPER
-------------------------------------------*/
-function toBase64(file) {
-    return new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(reader.result);
-        reader.readAsDataURL(file);
-    });
-}
-
-
-/*-----------------------------------------
-   TIME AGO FORMATTER (Reddit-style)
-------------------------------------------*/
-function timeAgo(timestamp) {
-    const now = Date.now();
-    const diff = Math.floor((now - timestamp) / 1000); // seconds
-
-    if (diff < 60) return "Just now";
-
-    const minutes = Math.floor(diff / 60);
-    if (minutes < 60) return minutes === 1 ? "1 minute ago" : `${minutes} minutes ago`;
-
-    const hours = Math.floor(minutes / 60);
-    if (hours < 24) return hours === 1 ? "1 hour ago" : `${hours} hours ago`;
-
-    const days = Math.floor(hours / 24);
-    return days === 1 ? "1 day ago" : `${days} days ago`;
-}
-
-
-/*-----------------------------------------
-   RENDER POST
-------------------------------------------*/
-function renderPost(data, prepend = true) {
-    const post = document.createElement("div");
-    post.classList.add("post");
-
-    post.innerHTML = `
-        <div class="vote-box">
-            <div class="upvote">▲</div>
-            <div class="vote-count">${data.votes}</div>
-            <div class="downvote">▼</div>
-        </div>
-
-        <div class="post-body">
-            <div class="post-title">${data.title}</div>
-            <div class="post-info" data-time="${data.created}">
-                ${timeAgo(data.created)}
-            </div>
-            <div class="post-content">
-                ${data.text ? `<p>${data.text}</p>` : ""}
-                ${data.image ? `<img src="${data.image}" class="post-img">` : ""}
-            </div>
-        </div>
-    `;
-
-    enableVoting(post, data.id);
-
-    if (prepend) postFeed.prepend(post);
-    else postFeed.append(post);
-}
-
-
-/*-----------------------------------------
-   VOTING SYSTEM
-------------------------------------------*/
-function enableVoting(postElement, postID) {
-    const up = postElement.querySelector(".upvote");
-    const down = postElement.querySelector(".downvote");
-    const count = postElement.querySelector(".vote-count");
-
-    let voteState = 0;
-
-    up.onclick = () => {
-        if (voteState === 1) {
-            voteState = 0;
-            count.textContent--;
-        } else {
-            if (voteState === -1) count.textContent++;
-            voteState = 1;
-            count.textContent++;
-        }
-        updateVotes(postID, count.textContent);
-    };
-
-    down.onclick = () => {
-        if (voteState === -1) {
-            voteState = 0;
-            count.textContent++;
-        } else {
-            if (voteState === 1) count.textContent--;
-            voteState = -1;
-            count.textContent--;
-        }
-        updateVotes(postID, count.textContent);
-    };
-}
-
-function updateVotes(id, newVoteCount) {
-    savedPosts = savedPosts.map(post =>
-        post.id === id ? { ...post, votes: newVoteCount } : post
-    );
-    localStorage.setItem("posts", JSON.stringify(savedPosts));
-}
-
-
-/*-----------------------------------------
-   LIVE TIME UPDATER (EVERY 60 SECONDS)
-------------------------------------------*/
-setInterval(() => {
-    document.querySelectorAll(".post-info").forEach(el => {
-        const timestamp = parseInt(el.getAttribute("data-time"));
-        el.textContent = timeAgo(timestamp);
-    });
-}, 60000);
-
-</script>
+<!-- JS SCRIPTS -->
+<script src="particles.js"></script> <!-- background particles -->
+<script src="home.js"></script>      <!-- your homepage logic -->
 
 </body>
 </html>

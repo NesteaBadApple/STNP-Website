@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 session_start();
 
 $errors = [
@@ -14,48 +13,68 @@ function showError($error) {
     return !empty($error) ? "<p class='error-message'>$error</p>" : '';
 }
 
-function isActiveForm($formName, $activeform) {
-    return $formName == $activeform ? 'active' : '';
+function isActiveForm($formName, $activeForm) {
+    return $formName == $activeForm ? 'active' : '';
 }
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
-    <link rel="stylesheet" href="login.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STNP Login</title>
+
+<link rel="stylesheet" href="login.css">
 </head>
 
 <body>
-    <div class="login-container">
+
+<!-- PARTICLES BACKGROUND -->
+<canvas id="particles"></canvas>
+
+<div class="login-container">
+
+    <!-- LOGIN FORM -->
     <div class="form-box <?= isActiveForm('login', $activeForm); ?>" id="login-form">
         <form action="stnp_login.php" method="post">
-            <h2>Login</h2>
-            <?=  showError($errors['login']); ?>
+            <h2>LOGIN</h2>
+            <?= showError($errors['login']); ?>
+            
             <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="password" placeholder="Password" required>
-            <button type="submit" name="login">Login</button>
-            <p>Don't have an account? <a href="#" onclick="showForm('register-form')">Register</a></p>
 
+            <button type="submit" name="login" class="glow-btn"><span></span>Login</button>
+
+            <p class="switch-text">Don't have an account? 
+                <a href="#" onclick="showForm('register-form')">Register</a>
+            </p>
         </form>
     </div>
 
+    <!-- REGISTER FORM -->
     <div class="form-box <?= isActiveForm('register', $activeForm); ?>" id="register-form">
         <form action="stnp_login.php" method="post">
-            <h2>Register</h2>
-            <?=  showError($errors['register']); ?>
+            <h2>REGISTER</h2>
+            <?= showError($errors['register']); ?>
+
             <input type="text" name="name" placeholder="Name" required>
             <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="password" placeholder="Password" required>
-            <button type="submit" name="register">Register</button>
-            <p>Already have an account? <a href="#" onclick="showForm('login-form')">Login</a></p>
 
+            <button type="submit" name="register" class="glow-btn"><span></span>Register</button>
+
+            <p class="switch-text">Already have an account? 
+                <a href="#" onclick="showForm('login-form')">Login</a>
+            </p>
         </form>
+    </div>
 
-        <script src="script.js"></script>
+</div>
+
+<!-- JS -->
+<script src="home.js"></script>
+<script src="script.js"></script>
+
 </body>
 </html>

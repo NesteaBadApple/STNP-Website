@@ -1,26 +1,4 @@
-/* ---------- DEFAULT (LIGHT MODE) ---------- */
-
-:root {
-    --bg: #dae0e6;
-    --navbar: #ffffff;
-    --text: #000;
-    --card: #fff;
-    --border: #ccc;
-    --input-bg: #f3f3f3;
-    --sidebar: #ffffff;
-}
-
-/* ---------- DARK MODE VARIABLES ---------- */
-.dark {
-    --bg: #000;
-    --navbar: #000;
-    --text: #fff;
-    --card: #111;
-    --border: #222;
-    --input-bg: #1a1a1a;
-    --sidebar: #111;
-}
-
+/* RESET */
 * {
     margin: 0;
     padding: 0;
@@ -29,229 +7,244 @@
 }
 
 body {
-    background: var(--bg);
-    color: var(--text);
+    background: #000;
+    color: #fff;
+    overflow-x: hidden;
 }
 
-/* Navbar */
+/* PARTICLES */
+#particles {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+/* NAVBAR */
 .navbar {
     width: 100%;
-    background: var(--navbar);
-    padding: 12px 20px;
+    padding: 15px 25px;
+    background: rgba(0,0,0,0.7);
+    border-bottom: 2px solid #ff7a00;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     position: sticky;
     top: 0;
-    z-index: 100;
-    border-bottom: 1px solid var(--border);
+    z-index: 10;
+    backdrop-filter: blur(6px);
 }
 
 .navbar h1 {
-    color: #ff4500;
+    font-size: 28px;
+    color: #ff7a00;
+    text-shadow: 0 0 12px #ff7a00;
 }
 
+/* SEARCH BAR */
 .navbar input {
-    margin-left: 20px;
-    width: 40%;
-    padding: 8px 12px;
+    padding: 8px 15px;
+    width: 260px;
     border-radius: 20px;
-    border: none;
-    background: var(--input-bg);
-    color: var(--text);
+    border: 2px solid #ff7a00;
+    background: #0a0a0a;
+    color: white;
+    outline: none;
+    transition: 0.3s;
 }
 
-.navbar input::placeholder {
-    color: #888;
+.navbar input:focus {
+    box-shadow: 0 0 10px #ff7a00;
+    border-color: #ff7a00;
 }
 
+/* SETTINGS BUTTON */
 .settings-btn {
-    margin-left: auto;
+    font-size: 26px;
     cursor: pointer;
-    font-size: 22px;
-    padding: 8px;
-    border-radius: 6px;
-    color: var(--text);
+    transition: 0.3s;
 }
 
 .settings-btn:hover {
-    background: var(--input-bg);
+    color: #ff7a00;
+    text-shadow: 0 0 12px #ff7a00;
 }
 
-/* Settings Panel */
+/* SETTINGS PANEL */
 .settings-panel {
-    position: fixed;
-    top: 70px;
-    right: 20px;
-    background: var(--card);
-    padding: 15px;
-    border-radius: 8px;
-    width: 200px;
-    border: 1px solid var(--border);
-    display: none;
-}
-
-/* Layout */
-.layout {
-    display: grid;
-    grid-template-columns: 250px 1fr 300px;
-    gap: 20px;
+    background: #0a0a0a;
     padding: 20px;
+    border: 2px solid #ff7a00;
+    width: 220px;
+    border-radius: 10px;
+    position: absolute;
+    right: 20px;
+    top: 70px;
+    display: none;
+    z-index: 11;
+    box-shadow: 0 0 20px #ff7a00;
 }
 
-/* Sidebars */
-.sidebar-left,
-.sidebar-right {
-    background: var(--sidebar);
-    padding: 15px;
+.settings-panel h3 {
+    color: #ff7a00;
+    margin-bottom: 10px;
+}
+
+/* SETTINGS BUTTONS */
+.settings-panel button {
+    width: 100%;
+    padding: 10px;
     border-radius: 8px;
-    border: 1px solid var(--border);
+    margin-top: 10px;
+    border: 2px solid #ff7a00;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.settings-panel button:hover {
+    background: #ff7a00;
+}
+
+/* LAYOUT */
+.layout {
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+    position: relative;
+    z-index: 5;
+}
+
+/* SIDE BARS */
+.sidebar-left, .sidebar-right {
+    width: 200px;
+    background: #0a0a0a;
+    padding: 15px;
+    border: 2px solid #ff7a00;
+    border-radius: 10px;
+    box-shadow: 0 0 15px #ff7a00;
+}
+
+.sidebar-left h3, .sidebar-right h3 {
+    color: #ff7a00;
+    margin-bottom: 10px;
 }
 
 .sidebar-left ul li {
-    margin: 10px 0;
+    list-style: none;
+    padding: 8px 0;
     cursor: pointer;
+    transition: 0.3s;
 }
 
 .sidebar-left ul li:hover {
-    color: #ff4500;
+    color: #ff7a00;
+    text-shadow: 0 0 10px #ff7a00;
 }
 
-/* Feed */
+/* MAIN FEED */
 .feed {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    flex: 1;
 }
 
-/* ---------- POST CARD ---------- */
-
-.post {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    background: var(--card);
-    padding: 15px;
-    border-radius: 10px;
-    border: 1px solid var(--border);
-}
-
-body.dark .post {
-    background: #111;
-    border: 1px solid #333;
-}
-
-.post-title {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.post-info {
-    color: #888;
-    font-size: 13px;
-    margin-bottom: 8px;
-}
-
-/* ---------- VOTE BAR (Reddit style) ---------- */
-
-.vote-box {
-    width: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    user-select: none;
-}
-
-.upvote, .downvote {
-    font-size: 26px;
-    cursor: pointer;
-    padding: 4px;
-}
-
-.vote-count {
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.upvote.active { color: #ff4500; }
-.downvote.active { color: #7193ff; }
-
-.upvote:hover {
-    background: rgba(255, 69, 0, 0.15);
-    border-radius: 4px;
-}
-.downvote:hover {
-    background: rgba(113, 147, 255, 0.15);
-    border-radius: 4px;
-}
-
-/* ---------- CREATE POST BOX ---------- */
-
+/* CREATE POST BOX */
 .create-post {
-    background: var(--card);
-    padding: 15px;
+    background: #0a0a0a;
+    padding: 20px;
     border-radius: 10px;
-    border: 1px solid var(--border);
+    border: 2px solid #ff7a00;
+    box-shadow: 0 0 15px #ff7a00;
+    margin-bottom: 25px;
+}
+
+.create-post h3 {
+    color: #ff7a00;
+    margin-bottom: 10px;
 }
 
 .create-post input,
 .create-post textarea {
     width: 100%;
+    padding: 12px;
     margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 6px;
-    border: 1px solid var(--border);
-    background: var(--input-bg);
-    color: var(--text);
+    background: #111;
+    border: 2px solid #ff7a00;
+    border-radius: 8px;
+    color: white;
+    outline: none;
 }
 
-.create-post textarea {
-    height: 120px;
-    resize: none;
-}
-
+/* BUTTON */
 .create-post button {
     width: 100%;
-    padding: 10px;
-    background: #ff4500;
-    border: none;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
+    padding: 12px;
+    border: 2px solid #ff7a00;
+    background: transparent;
     border-radius: 8px;
+    font-weight: bold;
+    color: white;
+    transition: 0.3s;
 }
 
-/* ---------- POST IMAGE ---------- */
+.create-post button:hover {
+    background: #ff7a00;
+}
+
+/* POSTS */
+.post {
+    display: flex;
+    background: #0a0a0a;
+    padding: 15px;
+    border-radius: 10px;
+    border: 2px solid #ff7a00;
+    margin-bottom: 20px;
+    box-shadow: 0 0 12px #ff7a00;
+}
+
+.vote-box {
+    width: 40px;
+    text-align: center;
+    margin-right: 15px;
+}
+
+.vote-box div {
+    cursor: pointer;
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+.vote-box div:hover {
+    color: #ff7a00;
+    text-shadow: 0 0 10px #ff7a00;
+}
+
+.post-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ff7a00;
+}
+
+.post-info {
+    opacity: 0.7;
+    margin-bottom: 8px;
+}
+
 .post-img {
     width: 100%;
+    margin-top: 10px;
     border-radius: 10px;
-    margin-top: 10px;
 }
 
-/* ---------- SETTINGS BUTTONS ---------- */
-.logout-btn {
-    width: 100%;
-    padding: 10px;
-    background: #d9534f;
-    border: none;
-    cursor: pointer;
-    color: white;
-    border-radius: 8px;
+/* DARK MODE */
+body.dark {
+    background: #050505;
 }
 
-.profile-btn {
-    width: 100%;
-    padding: 10px;
-    background: #1a73e8;
-    border: none;
-    cursor: pointer;
-    color: white;
-    border-radius: 8px;
-    font-weight: bold;
-    margin-top: 10px;
-}
-
-.profile-btn:hover,
-.logout-btn:hover {
-    opacity: 0.9;
+body.dark .sidebar-left,
+body.dark .sidebar-right,
+body.dark .create-post,
+body.dark .post,
+body.dark .settings-panel {
+    background: #0f0f0f;
 }

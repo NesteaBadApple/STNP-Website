@@ -1,89 +1,208 @@
-body {
+/* BASE STYLES */
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: Arial, sans-serif;
-    background: var(--bg);
-    color: var(--text);
+}
+
+body {
+    background: #000;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+/* PARTICLES */
+#particles {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
 }
 
 /* NAVBAR */
 .navbar {
-    background: var(--card);
-    padding: 10px 20px;
+    width: 100%;
+    padding: 18px 25px;
+    background: rgba(0,0,0,0.7);
+    border-bottom: 2px solid #ff7a00;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    backdrop-filter: blur(6px);
 }
 
-.back-home {
-    color: #1a73e8;
-    text-decoration: none;
-    font-weight: bold;
+.navbar h1 {
+    font-size: 28px;
+    color: #ff7a00;
+    text-shadow: 0 0 12px #ff7a00;
 }
 
-/* PROFILE LAYOUT */
-.profile-container {
+.nav-right {
     display: flex;
-    padding: 20px;
+    align-items: center;
     gap: 20px;
 }
 
-/* LEFT PROFILE SIDEBAR */
+.back-home {
+    color: #ff7a00;
+    text-decoration: none;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.back-home:hover {
+    text-shadow: 0 0 10px #ff7a00;
+}
+
+.toggle-btn {
+    padding: 8px 14px;
+    border: 2px solid #ff7a00;
+    border-radius: 8px;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+}
+
+/* MAIN PROFILE LAYOUT */
+.profile-container {
+    margin: 40px auto;
+    width: 85%;
+    display: flex;
+    gap: 25px;
+    position: relative;
+    z-index: 5;
+}
+
+/* LEFT SIDEBAR */
 .profile-sidebar {
-    width: 280px;
-    background: var(--card);
+    width: 260px;
+    background: #0a0a0a;
     padding: 20px;
-    border-radius: 15px;
-    text-align: center;
+    border: 2px solid #ff7a00;
+    border-radius: 12px;
+    box-shadow: 0 0 15px #ff7a00;
 }
 
 .avatar {
-    width: 120px;
-    border-radius: 50%;
-    margin-bottom: 10px;
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 15px;
 }
 
-.stats {
-    margin-top: 15px;
+#profileName {
+    color: #ff7a00;
+    text-align: center;
+    margin-bottom: 12px;
 }
 
-.stat-box {
-    background: var(--input);
+.bio {
+    width: 100%;
+    height: 80px;
+    background: #111;
+    color: white;
+    border: 2px solid #ff7a00;
+    border-radius: 8px;
     padding: 10px;
-    border-radius: 10px;
-    margin-bottom: 10px;
 }
 
-.stat-number {
-    font-size: 22px;
-    font-weight: bold;
+/* SAVE BIO BUTTON */
+.glow-btn {
+    width: 100%;
+    padding: 10px;
+    margin: 15px 0;
+    border: 2px solid #ff7a00;
+    background: transparent;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
 }
 
-/* RIGHT SIDE POSTS */
+.glow-btn span {
+    background: #ff7a00;
+    width: 0;
+    height: 100%;
+    position: absolute;
+    border-radius: 8px;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    transition: 0.3s;
+}
+
+.glow-btn:hover span {
+    width: 100%;
+}
+
+/* KARMA */
+.section-title {
+    margin-top: 20px;
+    color: #ff7a00;
+    margin-bottom: 5px;
+}
+
+.karma-bar {
+    width: 100%;
+    height: 10px;
+    background: #222;
+    border-radius: 5px;
+}
+
+.karma-fill {
+    height: 10px;
+    background: #ff7a00;
+    border-radius: 5px;
+}
+
+.karma-label {
+    margin-bottom: 15px;
+    font-size: 14px;
+    opacity: 0.85;
+}
+
+/* RIGHT CONTENT */
 .profile-posts {
-    flex-grow: 1;
-    background: var(--card);
-    padding: 20px;
-    border-radius: 15px;
+    flex: 1;
 }
 
-.posts-list .post-item {
-    background: var(--input);
+/* TABS */
+.tabs {
+    display: flex;
+    gap: 10px;
+}
+
+.tab {
+    padding: 8px 18px;
+    background: #111;
+    border: 2px solid #ff7a00;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.tab.active {
+    background: #ff7a00;
+    color: black;
+}
+
+.tab-content {
+    display: none;
+    margin-top: 20px;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* POSTS LIST */
+.post-item {
+    background: #0a0a0a;
     padding: 12px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-}
-
-:root {
-    --bg: #f6f7f8;
-    --text: #1a1a1b;
-    --card: #ffffff;
-    --input: #e5e7eb;
-}
-
-body.dark {
-    --bg: #030303;
-    --text: #d7dadc;
-    --card: #1a1a1b;
-    --input: #272729;
+    margin-bottom: 12px;
+    border: 1px solid #ff7a00;
+    border-radius: 6px;
 }
