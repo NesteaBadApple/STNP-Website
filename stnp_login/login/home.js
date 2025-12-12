@@ -41,3 +41,23 @@ function animateParticles() {
 }
 
 animateParticles();
+
+const modeSwitch = document.getElementById('modeSwitch');
+
+// Load saved mode from localStorage
+if (localStorage.getItem('darkMode') === 'enabled') {
+    document.body.classList.add('dark');
+    modeSwitch.checked = true;
+}
+
+// Toggle dark mode
+modeSwitch.addEventListener('change', () => {
+    if (modeSwitch.checked) {
+        document.body.classList.add('dark');
+        localStorage.setItem('darkMode', 'enabled');
+    } else {
+        document.body.classList.remove('dark');
+        localStorage.setItem('darkMode', 'disabled');
+    }
+});
+

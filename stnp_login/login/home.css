@@ -239,12 +239,94 @@ body {
 /* DARK MODE */
 body.dark {
     background: #050505;
+    color: #fff;
+    transition: background 0.3s, color 0.3s;
 }
 
+/* Sidebars, posts, create-post, settings-panel */
 body.dark .sidebar-left,
 body.dark .sidebar-right,
 body.dark .create-post,
 body.dark .post,
 body.dark .settings-panel {
     background: #0f0f0f;
+    border-color: #ff7a00;
+    box-shadow: 0 0 15px #ff7a00;
+    transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Navbar */
+body.dark .navbar {
+    background: rgba(10,10,10,0.7);
+    border-bottom-color: #ff7a00;
+}
+
+/* Inputs and textareas */
+body.dark input,
+body.dark textarea {
+    background: #111;
+    color: #fff;
+    border-color: #ff7a00;
+}
+
+/* Buttons */
+body.dark .create-post button,
+body.dark .settings-panel button {
+    color: #fff;
+    border-color: #ff7a00;
+}
+
+body.dark .create-post button:hover,
+body.dark .settings-panel button:hover {
+    background: #ff7a00;
+    color: #000;
+}
+
+/*-----------------------------
+   LIGHT MODE
+------------------------------*/
+body.light {
+    background: #f5f5f5;
+    color: #111;
+}
+
+body.light .navbar {
+    background: rgba(255, 255, 255, 0.8);
+    border-bottom-color: #ff7a00;
+}
+
+body.light .sidebar-left,
+body.light .sidebar-right,
+body.light .create-post,
+body.light .post,
+body.light .settings-panel {
+    background: #fff;
+    border-color: #ff7a00;
+    box-shadow: 0 0 15px #ff7a00;
+    color: #111;
+}
+
+body.light input,
+body.light textarea {
+    background: #f0f0f0;
+    color: #111;
+    border-color: #ff7a00;
+}
+
+body.light .create-post button,
+body.light .settings-panel button {
+    color: #111;
+    border-color: #ff7a00;
+}
+
+body.light .create-post button:hover,
+body.light .settings-panel button:hover {
+    background: #ff7a00;
+    color: #000;
+}
+
+/* Smooth transitions */
+body, .navbar, .sidebar-left, .sidebar-right, .create-post, .post, .settings-panel,
+input, textarea, button {
+    transition: background 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
 }

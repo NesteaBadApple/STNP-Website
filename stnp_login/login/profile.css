@@ -1,208 +1,184 @@
-/* BASE STYLES */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
+:root {
+    --bg: #000000;        /* black background */
+    --text: #ff7a00;      /* orange text */
+    --card: #1a1a1a;      /* dark card background */
+    --input: #2c2c2c;     /* input background */
+    --border: #ff7a00;    /* borders and highlights */
+}
+
+body.light {
+    --bg: #fffbf0;        /* light background */
+    --text: #1a1a1b;      /* dark text */
+    --card: #ffffff;      /* white card */
+    --input: #f0f0f0;     /* light input */
+    --border: #ff7a00;    /* keep orange highlight */
 }
 
 body {
-    background: #000;
-    color: #fff;
-    overflow-x: hidden;
-}
-
-/* PARTICLES */
-#particles {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    transition: background 0.3s, color 0.3s;
 }
 
 /* NAVBAR */
 .navbar {
-    width: 100%;
-    padding: 18px 25px;
-    background: rgba(0,0,0,0.7);
-    border-bottom: 2px solid #ff7a00;
+    background: var(--card);
+    padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 5;
-    backdrop-filter: blur(6px);
-}
-
-.navbar h1 {
-    font-size: 28px;
-    color: #ff7a00;
-    text-shadow: 0 0 12px #ff7a00;
+    border-bottom: 2px solid var(--border);
 }
 
 .nav-right {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
 }
 
 .back-home {
-    color: #ff7a00;
+    color: var(--text);
     text-decoration: none;
-    font-size: 18px;
-    transition: 0.3s;
-}
-
-.back-home:hover {
-    text-shadow: 0 0 10px #ff7a00;
+    font-weight: bold;
 }
 
 .toggle-btn {
-    padding: 8px 14px;
-    border: 2px solid #ff7a00;
-    border-radius: 8px;
     background: transparent;
-    color: white;
+    color: var(--text);
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    padding: 5px 10px;
     cursor: pointer;
+    transition: 0.3s;
 }
 
-/* MAIN PROFILE LAYOUT */
+.toggle-btn:hover {
+    background: var(--border);
+    color: #000;
+}
+
+/* PROFILE CONTAINER */
 .profile-container {
-    margin: 40px auto;
-    width: 85%;
     display: flex;
-    gap: 25px;
-    position: relative;
-    z-index: 5;
+    padding: 20px;
+    gap: 20px;
 }
 
 /* LEFT SIDEBAR */
 .profile-sidebar {
-    width: 260px;
-    background: #0a0a0a;
+    width: 280px;
+    background: var(--card);
     padding: 20px;
-    border: 2px solid #ff7a00;
-    border-radius: 12px;
-    box-shadow: 0 0 15px #ff7a00;
+    border-radius: 15px;
+    text-align: center;
+    border: 2px solid var(--border);
 }
 
 .avatar {
-    width: 100%;
-    border-radius: 12px;
-    margin-bottom: 15px;
-}
-
-#profileName {
-    color: #ff7a00;
-    text-align: center;
-    margin-bottom: 12px;
+    width: 120px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    border: 2px solid var(--border);
 }
 
 .bio {
     width: 100%;
-    height: 80px;
-    background: #111;
-    color: white;
-    border: 2px solid #ff7a00;
+    padding: 8px;
+    margin: 10px 0;
     border-radius: 8px;
-    padding: 10px;
+    border: 1px solid var(--border);
+    background: var(--input);
+    color: var(--text);
+    resize: none;
 }
 
-/* SAVE BIO BUTTON */
-.glow-btn {
-    width: 100%;
-    padding: 10px;
-    margin: 15px 0;
-    border: 2px solid #ff7a00;
+.btn {
     background: transparent;
-    color: white;
+    color: var(--text);
+    border: 2px solid var(--border);
     border-radius: 8px;
+    padding: 8px 12px;
     cursor: pointer;
-    position: relative;
-    overflow: hidden;
-}
-
-.glow-btn span {
-    background: #ff7a00;
-    width: 0;
-    height: 100%;
-    position: absolute;
-    border-radius: 8px;
-    left: 0;
-    bottom: 0;
-    z-index: -1;
     transition: 0.3s;
 }
 
-.glow-btn:hover span {
-    width: 100%;
+.btn:hover {
+    background: var(--border);
+    color: #000;
 }
 
-/* KARMA */
-.section-title {
-    margin-top: 20px;
-    color: #ff7a00;
+/* KARMA BARS */
+.karma-bar {
+    background: var(--input);
+    border-radius: 10px;
+    height: 15px;
     margin-bottom: 5px;
 }
 
-.karma-bar {
-    width: 100%;
-    height: 10px;
-    background: #222;
-    border-radius: 5px;
-}
-
 .karma-fill {
-    height: 10px;
-    background: #ff7a00;
-    border-radius: 5px;
+    background: var(--border);
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.3s;
 }
 
 .karma-label {
     margin-bottom: 15px;
-    font-size: 14px;
-    opacity: 0.85;
 }
 
-/* RIGHT CONTENT */
+/* RIGHT CONTENT / POSTS */
 .profile-posts {
-    flex: 1;
+    flex-grow: 1;
+    background: var(--card);
+    padding: 20px;
+    border-radius: 15px;
+    border: 2px solid var(--border);
 }
 
 /* TABS */
 .tabs {
     display: flex;
     gap: 10px;
+    margin-bottom: 15px;
 }
 
 .tab {
-    padding: 8px 18px;
-    background: #111;
-    border: 2px solid #ff7a00;
+    padding: 8px 12px;
+    border: 2px solid var(--border);
     border-radius: 8px;
+    background: transparent;
+    color: var(--text);
     cursor: pointer;
+    transition: 0.3s;
 }
 
 .tab.active {
-    background: #ff7a00;
-    color: black;
+    background: var(--border);
+    color: #000;
 }
 
 .tab-content {
     display: none;
-    margin-top: 20px;
 }
 
 .tab-content.active {
     display: block;
 }
 
-/* POSTS LIST */
-.post-item {
-    background: #0a0a0a;
+/* POSTS IN PROFILE */
+.posts-list .post-item {
+    background: var(--input);
     padding: 12px;
-    margin-bottom: 12px;
-    border: 1px solid #ff7a00;
-    border-radius: 6px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border: 1px solid var(--border);
+    color: var(--text);
+}
+
+/* TRANSITIONS */
+body, .profile-sidebar, .profile-posts, .post-item,
+input, textarea, button, .tab {
+    transition: background 0.3s, color 0.3s, border-color 0.3s;
 }
