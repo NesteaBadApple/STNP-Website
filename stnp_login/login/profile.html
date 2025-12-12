@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Profile - STNP</title>
+<link rel="stylesheet" href="profile.css">
+</head>
+<body class="dark"> <!-- auto-dark mode -->
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <h1>STNP</h1>
+    <div class="nav-right">
+        <a href="home.html" class="back-home">⬅ Home</a>
+        <button id="toggleMode" class="toggle-btn">🌙</button>
+    </div>
+</div>
+
+<div class="profile-container">
+
+    <!-- LEFT SIDEBAR -->
+    <div class="profile-sidebar">
+
+        <img id="avatarImg" src="https://www.redditstatic.com/avatars/avatar_default_02_46A508.png" class="avatar">
+
+        <h2 id="profileName">u/UnknownUser</h2>
+
+        <textarea id="bioText" class="bio" placeholder="Write your bio...">This is your bio. You can customize this later.</textarea>
+
+        <button id="saveBio" class="btn">Save Bio</button>
+
+        <h3 class="section-title">Karma</h3>
+        <div class="karma-bar">
+            <div id="postKarmaBar" class="karma-fill" style="width: 10%"></div>
+        </div>
+        <p class="karma-label">Post Karma: <span id="postKarma">0</span></p>
+
+        <div class="karma-bar">
+            <div id="commentKarmaBar" class="karma-fill" style="width: 5%"></div>
+        </div>
+        <p class="karma-label">Comment Karma: <span id="commentKarma">0</span></p>
+
+    </div>
+
+    <!-- RIGHT CONTENT -->
+    <div class="profile-posts">
+
+        <!-- TABS -->
+        <div class="tabs">
+            <button class="tab active" data-tab="overview">Overview</button>
+            <button class="tab" data-tab="posts">Posts</button>
+            <button class="tab" data-tab="comments">Comments</button>
+            <button class="tab" data-tab="saved">Saved</button>
+        </div>
+
+        <!-- TAB CONTENTS -->
+        <div id="tab-overview" class="tab-content active">
+            <p>Welcome to your profile overview.</p>
+        </div>
+
+        <div id="tab-posts" class="tab-content">
+            <h3>Your Posts</h3>
+            <div id="userPosts" class="posts-list"></div>
+        </div>
+
+        <div id="tab-comments" class="tab-content">
+            <h3>Your Comments</h3>
+            <div id="userComments" class="posts-list"></div>
+        </div>
+
+        <div id="tab-saved" class="tab-content">
+            <h3>Saved</h3>
+            <p>No saved items.</p>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+// Load username
+const name = localStorage.getItem("username") || "GuestUser";
+document.getElementById("profileName").textContent = "u/" + name;
+
+// Load posts
+const posts = JSON.parse(localStorage.getItem("posts") || "[]");
+const postsBox = document.getElementById("userPosts");
+if (posts.length === 0) postsBox.innerHTML = "<p>No posts yet.</p>";
+else posts.forEach(p => {
+    const div = document.createElement("div");
+    div.className = "post-item";
+    div.textContent = p;
+    postsBox.appendChild(div);
+});
+
+// Load comments
+const comments = JSON.parse(localStorage.getItem("comments") || "[]");
+const commentsBox = document.getElementById("userComments");
+if (comments.length === 0) commentsBox.innerHTML = "<p>No comments yet.</p>";
+else comments.forEach(c => {
+    const div = document.createElement("div");
+    div.className = "post-item";
+    div.textContent = c;
+    commentsBox.appendChild(div);
+});
+
+// Save bio
+document.getElementById("saveBio").onclick = () => {
+    localStorage.setItem("bio", document.getElementById("bioText").value);
+};
+
+document.getElementById("bioText").value = localStorage.getItem("bio") || "This is your bio.";
+
+// Tabs
+const tabs = document.querySelectorAll('.tab');
+const contents = document.querySelectorAll('.tab-content');
+tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        contents.forEach(c => c.classList.remove('active'));
+
+        tab.classList.add('active');
+        document.getElementById(`tab-${tab.dataset.tab}`).classList.add('active');
+    });
+});
+
+// Dark mode toggle
+document.getElementById("toggleMode").onclick = () => {
+    document.body.classList.toggle("dark");
+};
+</script>
+
+</body>
+</html>

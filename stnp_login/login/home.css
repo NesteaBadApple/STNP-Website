@@ -1,0 +1,257 @@
+/* ---------- DEFAULT (LIGHT MODE) ---------- */
+
+:root {
+    --bg: #dae0e6;
+    --navbar: #ffffff;
+    --text: #000;
+    --card: #fff;
+    --border: #ccc;
+    --input-bg: #f3f3f3;
+    --sidebar: #ffffff;
+}
+
+/* ---------- DARK MODE VARIABLES ---------- */
+.dark {
+    --bg: #000;
+    --navbar: #000;
+    --text: #fff;
+    --card: #111;
+    --border: #222;
+    --input-bg: #1a1a1a;
+    --sidebar: #111;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+}
+
+/* Navbar */
+.navbar {
+    width: 100%;
+    background: var(--navbar);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid var(--border);
+}
+
+.navbar h1 {
+    color: #ff4500;
+}
+
+.navbar input {
+    margin-left: 20px;
+    width: 40%;
+    padding: 8px 12px;
+    border-radius: 20px;
+    border: none;
+    background: var(--input-bg);
+    color: var(--text);
+}
+
+.navbar input::placeholder {
+    color: #888;
+}
+
+.settings-btn {
+    margin-left: auto;
+    cursor: pointer;
+    font-size: 22px;
+    padding: 8px;
+    border-radius: 6px;
+    color: var(--text);
+}
+
+.settings-btn:hover {
+    background: var(--input-bg);
+}
+
+/* Settings Panel */
+.settings-panel {
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    background: var(--card);
+    padding: 15px;
+    border-radius: 8px;
+    width: 200px;
+    border: 1px solid var(--border);
+    display: none;
+}
+
+/* Layout */
+.layout {
+    display: grid;
+    grid-template-columns: 250px 1fr 300px;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Sidebars */
+.sidebar-left,
+.sidebar-right {
+    background: var(--sidebar);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+.sidebar-left ul li {
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.sidebar-left ul li:hover {
+    color: #ff4500;
+}
+
+/* Feed */
+.feed {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ---------- POST CARD ---------- */
+
+.post {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: var(--card);
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+}
+
+body.dark .post {
+    background: #111;
+    border: 1px solid #333;
+}
+
+.post-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.post-info {
+    color: #888;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+/* ---------- VOTE BAR (Reddit style) ---------- */
+
+.vote-box {
+    width: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    user-select: none;
+}
+
+.upvote, .downvote {
+    font-size: 26px;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.vote-count {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.upvote.active { color: #ff4500; }
+.downvote.active { color: #7193ff; }
+
+.upvote:hover {
+    background: rgba(255, 69, 0, 0.15);
+    border-radius: 4px;
+}
+.downvote:hover {
+    background: rgba(113, 147, 255, 0.15);
+    border-radius: 4px;
+}
+
+/* ---------- CREATE POST BOX ---------- */
+
+.create-post {
+    background: var(--card);
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+}
+
+.create-post input,
+.create-post textarea {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--input-bg);
+    color: var(--text);
+}
+
+.create-post textarea {
+    height: 120px;
+    resize: none;
+}
+
+.create-post button {
+    width: 100%;
+    padding: 10px;
+    background: #ff4500;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+/* ---------- POST IMAGE ---------- */
+.post-img {
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+/* ---------- SETTINGS BUTTONS ---------- */
+.logout-btn {
+    width: 100%;
+    padding: 10px;
+    background: #d9534f;
+    border: none;
+    cursor: pointer;
+    color: white;
+    border-radius: 8px;
+}
+
+.profile-btn {
+    width: 100%;
+    padding: 10px;
+    background: #1a73e8;
+    border: none;
+    cursor: pointer;
+    color: white;
+    border-radius: 8px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.profile-btn:hover,
+.logout-btn:hover {
+    opacity: 0.9;
+}

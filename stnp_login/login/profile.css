@@ -1,0 +1,89 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+/* NAVBAR */
+.navbar {
+    background: var(--card);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.back-home {
+    color: #1a73e8;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* PROFILE LAYOUT */
+.profile-container {
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+}
+
+/* LEFT PROFILE SIDEBAR */
+.profile-sidebar {
+    width: 280px;
+    background: var(--card);
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.avatar {
+    width: 120px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.stats {
+    margin-top: 15px;
+}
+
+.stat-box {
+    background: var(--input);
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.stat-number {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* RIGHT SIDE POSTS */
+.profile-posts {
+    flex-grow: 1;
+    background: var(--card);
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.posts-list .post-item {
+    background: var(--input);
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+:root {
+    --bg: #f6f7f8;
+    --text: #1a1a1b;
+    --card: #ffffff;
+    --input: #e5e7eb;
+}
+
+body.dark {
+    --bg: #030303;
+    --text: #d7dadc;
+    --card: #1a1a1b;
+    --input: #272729;
+}
