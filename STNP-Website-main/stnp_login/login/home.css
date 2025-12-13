@@ -1,0 +1,501 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #000;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+/* PARTICLES */
+#particles {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+/* NAVBAR */
+.navbar {
+    width: 100%;
+    padding: 15px 25px;
+    background: rgba(0,0,0,0.7);
+    border-bottom: 2px solid #ff7a00;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: blur(6px);
+}
+
+.navbar h1 {
+    font-size: 28px;
+    color: #ff7a00;
+    text-shadow: 0 0 12px #ff7a00;
+}
+
+/* SEARCH BAR */
+.navbar input {
+    padding: 8px 15px;
+    width: 260px;
+    border-radius: 20px;
+    border: 2px solid #ff7a00;
+    background: #0a0a0a;
+    color: white;
+    outline: none;
+    transition: 0.3s;
+}
+
+.navbar input:focus {
+    box-shadow: 0 0 10px #ff7a00;
+    border-color: #ff7a00;
+}
+
+/* SETTINGS BUTTON */
+.settings-btn {
+    font-size: 26px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.settings-btn:hover {
+    color: #ff7a00;
+    text-shadow: 0 0 12px #ff7a00;
+}
+
+/* SETTINGS PANEL */
+.settings-panel {
+    background: #0a0a0a;
+    padding: 20px;
+    border: 2px solid #ff7a00;
+    width: 220px;
+    border-radius: 10px;
+    position: absolute;
+    right: 20px;
+    top: 70px;
+    display: none;
+    z-index: 11;
+    box-shadow: 0 0 20px #ff7a00;
+}
+
+.settings-panel h3 {
+    color: #ff7a00;
+    margin-bottom: 10px;
+}
+
+/* SETTINGS BUTTONS */
+.settings-panel button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+    border: 2px solid #ff7a00;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.settings-panel button:hover {
+    background: #ff7a00;
+}
+
+/* LAYOUT */
+.layout {
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+    position: relative;
+    z-index: 5;
+}
+
+/* SIDE BARS */
+.sidebar-left, .sidebar-right {
+    width: 200px;
+    background: #0a0a0a;
+    padding: 15px;
+    border: 2px solid #ff7a00;
+    border-radius: 10px;
+    box-shadow: 0 0 15px #ff7a00;
+}
+
+.sidebar-left h3, .sidebar-right h3 {
+    color: #ff7a00;
+    margin-bottom: 10px;
+}
+
+.sidebar-left ul li {
+    list-style: none;
+    padding: 8px 0;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.sidebar-left ul li:hover {
+    color: #ff7a00;
+    text-shadow: 0 0 10px #ff7a00;
+}
+
+/* MAIN FEED */
+.feed {
+    flex: 1;
+}
+
+/* CREATE POST BOX */
+.create-post {
+    background: #0a0a0a;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid #ff7a00;
+    box-shadow: 0 0 15px #ff7a00;
+    margin-bottom: 25px;
+}
+
+.create-post h3 {
+    color: #ff7a00;
+    margin-bottom: 10px;
+}
+
+.create-post input,
+.create-post textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    background: #111;
+    border: 2px solid #ff7a00;
+    border-radius: 8px;
+    color: white;
+    outline: none;
+}
+
+/* BUTTON */
+.create-post button {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ff7a00;
+    background: transparent;
+    border-radius: 8px;
+    font-weight: bold;
+    color: white;
+    transition: 0.3s;
+}
+
+.create-post button:hover {
+    background: #ff7a00;
+}
+
+/* POSTS */
+.post {
+    display: flex;
+    background: #0a0a0a;
+    padding: 15px;
+    border-radius: 10px;
+    border: 2px solid #ff7a00;
+    margin-bottom: 20px;
+    box-shadow: 0 0 12px #ff7a00;
+}
+
+.vote-box {
+    width: 40px;
+    text-align: center;
+    margin-right: 15px;
+}
+
+.vote-box div {
+    cursor: pointer;
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+.vote-box div:hover {
+    color: #ff7a00;
+    text-shadow: 0 0 10px #ff7a00;
+}
+
+.post-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ff7a00;
+}
+
+.post-info {
+    opacity: 0.7;
+    margin-bottom: 8px;
+}
+
+.post-img {
+    width: 100%;
+    max-height: 450px;     /* IMAGE SIZE LIMIT */
+    margin-top: 10px;
+    border-radius: 10px;
+    display: block;
+    object-fit: cover;    /* CROPS LIKE FACEBOOK */
+}
+
+
+/* DARK MODE */
+body.dark {
+    background: #050505;
+    color: #fff;
+    transition: background 0.3s, color 0.3s;
+}
+
+/* Sidebars, posts, create-post, settings-panel */
+body.dark .sidebar-left,
+body.dark .sidebar-right,
+body.dark .create-post,
+body.dark .post,
+body.dark .settings-panel {
+    background: #0f0f0f;
+    border-color: #ff7a00;
+    box-shadow: 0 0 15px #ff7a00;
+    transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Navbar */
+body.dark .navbar {
+    background: rgba(10,10,10,0.7);
+    border-bottom-color: #ff7a00;
+}
+
+/* Inputs and textareas */
+body.dark input,
+body.dark textarea {
+    background: #111;
+    color: #fff;
+    border-color: #ff7a00;
+}
+
+/* Buttons */
+body.dark .create-post button,
+body.dark .settings-panel button {
+    color: #fff;
+    border-color: #ff7a00;
+}
+
+body.dark .create-post button:hover,
+body.dark .settings-panel button:hover {
+    background: #ff7a00;
+    color: #000;
+}
+
+/*-----------------------------
+   LIGHT MODE
+------------------------------*/
+body.light {
+    background: #f5f5f5;
+    color: #111;
+}
+
+body.light .navbar {
+    background: rgba(255, 255, 255, 0.8);
+    border-bottom-color: #ff7a00;
+}
+
+body.light .sidebar-left,
+body.light .sidebar-right,
+body.light .create-post,
+body.light .post,
+body.light .settings-panel {
+    background: #fff;
+    border-color: #ff7a00;
+    box-shadow: 0 0 15px #ff7a00;
+    color: #111;
+}
+
+body.light input,
+body.light textarea {
+    background: #f0f0f0;
+    color: #111;
+    border-color: #ff7a00;
+}
+
+body.light .create-post button,
+body.light .settings-panel button {
+    color: #111;
+    border-color: #ff7a00;
+}
+
+body.light .create-post button:hover,
+body.light .settings-panel button:hover {
+    background: #ff7a00;
+    color: #000;
+}
+
+/* Smooth transitions */
+body, .navbar, .sidebar-left, .sidebar-right, .create-post, .post, .settings-panel,
+input, textarea, button {
+    transition: background 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+/* ===============================
+      COMMENTS SECTION
+=============================== */
+
+.comments-section {
+    margin-top: 15px;
+    padding: 15px;
+    background: #0a0a0a;
+    border: 2px solid #ff7a00;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ff7a00;
+}
+
+.comments-section h4 {
+    color: #ff7a00;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+/* COMMENT ITEM */
+.comment {
+    background: #111;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ff7a00;
+    box-shadow: 0 0 8px #ff7a00;
+}
+
+.comment-username {
+    color: #ff7a00;
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+
+.comment-text {
+    margin-bottom: 6px;
+}
+
+.comment-time {
+    font-size: 12px;
+    opacity: 0.7;
+}
+
+/* COMMENT INPUT AREA */
+.comment-input-box {
+    margin-top: 10px;
+}
+
+.comment-input-box textarea {
+    width: 100%;
+    background: #111;
+    color: white;
+    padding: 10px;
+    border: 2px solid #ff7a00;
+    border-radius: 8px;
+    resize: none;
+    outline: none;
+}
+
+.comment-input-box button {
+    margin-top: 8px;
+    width: 100%;
+    padding: 10px;
+    background: transparent;
+    border: 2px solid #ff7a00;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.comment-input-box button:hover {
+    background: #ff7a00;
+    color: black;
+}
+
+/* ===============================
+    DARK MODE COMMENTS
+=============================== */
+body.dark .comments-section {
+    background: #0f0f0f;
+    border-color: #ff7a00;
+    box-shadow: 0 0 10px #ff7a00;
+}
+
+body.dark .comment {
+    background: #111;
+    border-color: #ff7a00;
+}
+
+body.dark .comment-input-box textarea {
+    background: #111;
+    color: white;
+}
+
+body.dark .comment-input-box button:hover {
+    background: #ff7a00;
+    color: black;
+}
+
+/* ===============================
+      LIGHT MODE COMMENTS
+=============================== */
+body.light .comments-section {
+    background: white;
+    border-color: #ff7a00;
+}
+
+body.light .comment {
+    background: #f7f7f7;
+    border-color: #ff7a00;
+}
+
+body.light .comment-input-box textarea {
+    background: #f0f0f0;
+    color: #111;
+}
+
+body.light .comment-input-box button:hover {
+    background: #ff7a00;
+    color: black;
+}
+
+/* SETTINGS PANEL: floating draggable box */
+.settings-panel {
+    position: fixed;          /* STAYS WHEN SCROLLING */
+    top: 70px;
+    right: 20px;
+    width: 260px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 15px;
+    border-radius: 10px;
+    display: none;
+    z-index: 9999;
+    cursor: grab;             /* DRAG ICON */
+}
+
+.settings-panel:active {
+    cursor: grabbing;
+}
+
+/* ===============================
+   AVATAR SIZE FIX
+=============================== */
+
+/* Avatar in posts */
+.post-title .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+/* Smaller avatar for comments */
+.avatar.small {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}

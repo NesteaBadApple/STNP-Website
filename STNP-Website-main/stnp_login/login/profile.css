@@ -1,0 +1,193 @@
+:root {
+    --bg: #000000;        /* black background */
+    --text: #ff7a00;      /* orange text */
+    --card: #1a1a1a;      /* dark card background */
+    --input: #2c2c2c;     /* input background */
+    --border: #ff7a00;    /* borders and highlights */
+}
+
+body.light {
+    --bg: #fffbf0;        /* light background */
+    --text: #1a1a1b;      /* dark text */
+    --card: #ffffff;      /* white card */
+    --input: #f0f0f0;     /* light input */
+    --border: #ff7a00;    /* keep orange highlight */
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    transition: background 0.3s, color 0.3s;
+}
+
+/* NAVBAR */
+.navbar {
+    background: var(--card);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--border);
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.back-home {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.toggle-btn {
+    background: transparent;
+    color: var(--text);
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.toggle-btn:hover {
+    background: var(--border);
+    color: #000;
+}
+
+/* PROFILE CONTAINER */
+.profile-container {
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+}
+
+/* LEFT SIDEBAR */
+.profile-sidebar {
+    width: 280px;
+    background: var(--card);
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    border: 2px solid var(--border);
+}
+
+.avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+
+.bio {
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--input);
+    color: var(--text);
+    resize: none;
+}
+
+.btn {
+    background: transparent;
+    color: var(--text);
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: var(--border);
+    color: #000;
+}
+
+/* KARMA BARS */
+.karma-bar {
+    background: var(--input);
+    border-radius: 10px;
+    height: 15px;
+    margin-bottom: 5px;
+}
+
+.karma-fill {
+    background: var(--border);
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.3s;
+}
+
+.karma-label {
+    margin-bottom: 15px;
+}
+
+/* RIGHT CONTENT / POSTS */
+.profile-posts {
+    flex-grow: 1;
+    background: var(--card);
+    padding: 20px;
+    border-radius: 15px;
+    border: 2px solid var(--border);
+}
+
+/* TABS */
+.tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.tab {
+    padding: 8px 12px;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.tab.active {
+    background: var(--border);
+    color: #000;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* POSTS IN PROFILE */
+.posts-list .post-item {
+    background: var(--input);
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border: 1px solid var(--border);
+    color: var(--text);
+}
+
+.post-image {
+    width: 200px;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 10px;
+    display: block;
+}
+
+/* TRANSITIONS */
+body, .profile-sidebar, .profile-posts, .post-item,
+input, textarea, button, .tab {
+    transition: background 0.3s, color 0.3s, border-color 0.3s;
+}

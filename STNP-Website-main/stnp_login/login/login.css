@@ -1,0 +1,131 @@
+/* GLOBAL RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #000;
+    overflow: hidden;
+    color: white;
+}
+
+/* PARTICLES CANVAS */
+#particles {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+/* CENTER LOGIN CONTAINER */
+.login-container {
+    position: relative;
+    z-index: 5;
+    width: 400px;
+    margin: 120px auto;
+}
+
+/* FORM BOX */
+.form-box {
+    display: none;
+    background: rgba(10,10,10,0.8);
+    padding: 30px;
+    border-radius: 12px;
+    border: 2px solid #ff7a00;
+    box-shadow: 0 0 18px #ff7a00;
+    text-align: center;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.form-box.active {
+    display: block;
+}
+
+/* TITLES */
+h2 {
+    color: #ff7a00;
+    margin-bottom: 20px;
+    text-shadow: 0 0 12px #ff7a00;
+}
+
+/* INPUT FIELDS */
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    background: #111;
+    border: 2px solid #ff7a00;
+    border-radius: 8px;
+    color: white;
+    outline: none;
+    transition: 0.3s;
+}
+
+input:focus {
+    box-shadow: 0 0 12px #ff7a00;
+}
+
+/* GLOW BUTTON */
+.glow-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: 2px solid #ff7a00;
+    background: transparent;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.glow-btn span {
+    background: #ff7a00;
+    width: 0;
+    height: 100%;
+    border-radius: 8px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    transition: 0.4s;
+}
+
+.glow-btn:hover span {
+    width: 100%;
+}
+
+/* SWITCH TEXT */
+.switch-text {
+    margin-top: 15px;
+}
+
+.switch-text a {
+    color: #ff7a00;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.switch-text a:hover {
+    text-shadow: 0 0 8px #ff7a00;
+}
+
+/* ERROR MESSAGE */
+.error-message {
+    color: #ff7a00;
+    margin-bottom: 10px;
+    font-size: 14px;
+    text-shadow: 0 0 10px #ff7a00;
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
+}
